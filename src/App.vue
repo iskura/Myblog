@@ -2,21 +2,15 @@
   <TopHeader />
   <AsideNavBar />
 
-  <!-- <div id="nav">router测试代码
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
-
   <!-- 路由显示框 -->
-  <div class="router">
-    <router-view />
-    <Footer class="footer" />
-  </div>
+  <router-view class="MainView" />
+  <Footer class="Footer" />
 </template>
 <script>
 import TopHeader from "./components/TopHeader.vue";
 import AsideNavBar from "./components/AsideNavBar.vue";
 import Footer from "./components/Footer.vue";
+
 export default {
   components: { TopHeader, AsideNavBar, Footer },
 };
@@ -26,9 +20,17 @@ export default {
   padding: 0;
   margin: 0;
 }
-.router {
+.MainView {
+  position: relative;
   margin-left: 217px;
+  margin-top: 50px;
+  padding: 0px;
+  height: auto;
 }
-/* .footer {
-} */
+.Footer {
+  margin-left: 217px;
+  left: 217px;
+  height: 50px;
+  width: auto;
+}
 </style>

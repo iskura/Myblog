@@ -1,93 +1,89 @@
 <template>
   <div class="aside">
-    <el-row class="tac">
-      <el-tag type="info">导航</el-tag>
-      <el-col :span="24">
-        <el-menu
-          default-active="2"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
-        >
-          <el-sub-menu index="1">
-            <template #title="">
-              <el-icon><location /></el-icon>
-              <span>首页</span>
-            </template>
-          </el-sub-menu>
-          <el-menu-item index="2">
-            <el-icon><icon-menu /></el-icon>
-            <span>XXXX</span>
-          </el-menu-item>
-          <el-menu-item index="3">
-            <el-icon><document /></el-icon>
-            <span>仓库</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <el-icon><setting /></el-icon>
-            <span>音乐</span>
-          </el-menu-item>
-          <el-menu-item index="5">
-            <el-icon><setting /></el-icon>
-            <span>归档</span>
-          </el-menu-item>
-          <el-menu-item index="6">
-            <el-icon><setting /></el-icon>
-            <span>留言</span>
-          </el-menu-item>
-          <el-menu-item index="7">
-            <el-icon><setting /></el-icon>
-            <span>一些盒子</span>
-          </el-menu-item>
-        </el-menu>
-      </el-col>
-      <el-tag type="info"> 组成</el-tag>
+    <el-scrollbar style="heigth: 100%">
+      <el-row class="tac">
+        <el-tag type="info">导航</el-tag>
+        <el-col :span="24">
+          <el-menu router default-active="1" class="main">
+            <el-menu-item index="/">
+              <el-icon><location /></el-icon><span>首页</span></el-menu-item
+            >
 
-      <el-col :span="24">
-        <el-menu
-          default-active="2"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
-        >
-          <el-sub-menu index="1">
-            <template #title="">
-              <el-icon><location /></el-icon>
-              <span>分类</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="1-1">前端</el-menu-item>
-              <el-menu-item index="1-2">闲谈</el-menu-item>
-              <el-menu-item index="1-3">笔记</el-menu-item>
-              <el-menu-item index="1-4">设计</el-menu-item>
-              <el-menu-item index="1-5">一周记录</el-menu-item>
-              <el-menu-item index="1-6">技术</el-menu-item>
-              <el-menu-item index="1-7">生活</el-menu-item>
-              <el-menu-item index="1-8">匣子</el-menu-item>
-              <el-menu-item index="1-9">新世界的大门</el-menu-item>
-            </el-menu-item-group>
-          </el-sub-menu>
-          <el-sub-menu index="2">
-            <template #title="">
+            <el-menu-item index="Sample">
               <el-icon><icon-menu /></el-icon>
-              <span>页面</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="2-1">项目</el-menu-item>
-              <el-menu-item index="2-2">归档</el-menu-item>
-              <el-menu-item index="2-3">时光机</el-menu-item>
-              <el-menu-item index="2-4">留言板</el-menu-item>
-              <el-menu-item index="2-5">BILIBILI</el-menu-item>
-            </el-menu-item-group>
-          </el-sub-menu>
+              <span>作品</span>
+            </el-menu-item>
+            <el-menu-item index="Box">
+              <el-icon><document /></el-icon>
+              <span>仓库</span>
+            </el-menu-item>
+            <el-menu-item index="Music">
+              <el-icon><setting /></el-icon>
+              <span>音乐</span>
+            </el-menu-item>
+            <el-menu-item index="File">
+              <el-icon><setting /></el-icon>
+              <span>归档</span>
+            </el-menu-item>
+            <el-menu-item index="Message">
+              <el-icon><setting /></el-icon>
+              <span>留言</span>
+            </el-menu-item>
+            <el-menu-item index="Something">
+              <el-icon><setting /></el-icon>
+              <span>一些盒子</span>
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+        <el-tag type="info"> 组成</el-tag>
 
-          <el-menu-item index="3">
-            <el-icon><document /></el-icon>
-            <span>一些有用的连接</span>
-          </el-menu-item>
-        </el-menu>
-      </el-col>
-    </el-row>
+        <el-col :span="24">
+          <el-menu
+            class="el-menu-demo"
+            @open="handleOpen"
+            router
+            @close="handleClose"
+            @unique-opened="true"
+          >
+            <el-sub-menu :index="path">
+              <template #title="">
+                <el-icon><location /></el-icon>
+                <span>分类</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item :index="'1-1'">前端</el-menu-item>
+                <el-menu-item index="1-2">闲谈</el-menu-item>
+                <el-menu-item index="1-3">笔记</el-menu-item>
+                <el-menu-item index="1-4">设计</el-menu-item>
+                <el-menu-item index="1-5">一周记录</el-menu-item>
+                <el-menu-item index="1-6">技术</el-menu-item>
+                <el-menu-item index="1-7">生活</el-menu-item>
+                <el-menu-item index="1-8">匣子</el-menu-item>
+                <el-menu-item index="1-9">新世界的大门</el-menu-item>
+              </el-menu-item-group>
+            </el-sub-menu>
+            <el-sub-menu index="2">
+              <template #title="">
+                <el-icon><icon-menu /></el-icon>
+                <span>页面</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item index="2-1">项目</el-menu-item>
+                <el-menu-item index="2-2">归档</el-menu-item>
+                <el-menu-item index="2-3">时光机</el-menu-item>
+                <el-menu-item index="2-4">留言板</el-menu-item>
+                <el-menu-item index="2-5">BILIBILI</el-menu-item>
+              </el-menu-item-group>
+            </el-sub-menu>
+
+            <el-menu-item index="3">
+              <el-icon><document /></el-icon>
+              <span>一些有用的连接</span>
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+      </el-row>
+    </el-scrollbar>
   </div>
 </template>
 
@@ -118,6 +114,11 @@ export default defineComponent({
       handleClose,
     };
   },
+  data() {
+    return {
+      name: "Something",
+    };
+  },
 });
 // 组件信息
 </script>
@@ -125,9 +126,13 @@ export default defineComponent({
 <style scope>
 .aside {
   float: left;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
   padding-top: 50px;
   width: 217px;
+  overflow: hidden;
 }
 .tac {
   flex-direction: column;

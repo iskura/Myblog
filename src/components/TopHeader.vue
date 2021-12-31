@@ -39,7 +39,9 @@ export default {
 </script>
 <style scoped>
 .header {
+  z-index: 1;
   position: fixed;
+  margin: 0;
   padding: 0;
   top: 0;
   width: 100%;
@@ -48,20 +50,20 @@ export default {
 .zhazhayu {
   position: fixed;
   height: 50px;
-  width: 29vh;
+  width: 217px;
   background: #f9f9f9;
 }
 .log {
   height: 50px;
-  margin: 0px 10vh;
+  margin: 0px 80px;
 }
 /* 顶部导航栏 */
 .Topnavbar-collapse {
   position: relative;
-  margin-left: 29vh;
+  margin-left: 217px;
   height: 50px;
   width: auto;
-  background-color: #c46868;
+  background-color: #f9f9f9;
 }
 /* 数据统计按钮 */
 .statitic-info {

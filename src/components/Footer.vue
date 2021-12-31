@@ -1,20 +1,47 @@
 <template>
-  <div class="block">
-    <span class="demonstration">When you have few pages</span>
-    <el-pagination layout="prev, pager, next" :total="50"></el-pagination>
+  <div class="footer">
+    <div class="footer-p">
+      <span class="footer-i">{{ name }}</span>
+      <span class="footer-i">&nbsp; • &nbsp;</span>
+      <span>
+        <a
+          href="http://beian.miit.gov.cn/"
+          class="footer-a"
+          target="_blank"
+          rel="noopener"
+          >{{ numble }}</a
+        ></span
+      >
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Footer",
-  components: {},
+  data() {
+    return {
+      name: "炸炸鱼 © 2021",
+      numble: "赣ICP备2021009143号",
+    };
+  },
 };
 </script>
 
-<style scoped>
-.block {
-  padding-left: 29vh;
+<style lang="less" scoped>
+.footer {
+  width: auto;
   height: 50px;
+  background: #f9f9f9;
+  .footer-p {
+    float: left;
+    width: auto;
+    margin-top: 15px;
+    margin-left: 16vw;
+    color: rgb(0, 0, 0);
+    .footer-a {
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+    }
+  }
 }
 </style>

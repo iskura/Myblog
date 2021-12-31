@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>sdasdddddd</h1>
+  <div class="Navigation">
+    <h1>侧边栏</h1>
   </div>
 </template>
 
@@ -11,4 +11,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.Navigation {
+  right: 0px;
+  width: 25%;
+  height: auto;
+  background-color: khaki;
+}
+</style>
