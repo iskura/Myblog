@@ -43,6 +43,11 @@ const routes = [
     name: 'Something',
     component:()=>import('../views/Something.vue')
   },
+  {
+    path: '/Page',
+    name: 'Id',
+    component:()=>import('../components/page/id.vue')
+  },
 ]
 
 const router = createRouter({

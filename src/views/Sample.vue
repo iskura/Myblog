@@ -1,5 +1,28 @@
 <template>
-  <div class="Sample">
-    <h1>Sample</h1>
+  <div>
+    <button @click="testAxios">Sample TestAxios</button>
   </div>
+  <!--App -->
 </template>
+
+<script>
+export default {
+  methods: {
+    testAxios() {
+      // 由于 main.js 里全局定义的 axios,此处直接使用 $axios 即可。
+      // 由于 main.js 里定义了每个请求前缀，此处的 / 即为 /api/，
+      // 经过 vue.config.js 配置文件的代理设置，会自动转为 https://www.baidu.com/，从而解决跨域问题
+      this.$http
+        .get("api/blog/list")
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          alert("请求失败" + err);
+        });
+    },
+  },
+};
+</script>
+
+<style></style>

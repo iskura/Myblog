@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import Axios from './plugins/axios'
 
-
-createApp(App).use(router).use(store).use(router).mount('#app')
+const app=createApp(App)
+app.use(router).use(store).use(router).use(Axios).mount('#app')
