@@ -2,15 +2,15 @@
   <div class="aside">
     <el-scrollbar style="heigth: 100%">
       <el-row class="tac">
-        <el-tag type="info">导航</el-tag>
+        <el-tag type="info" color="#0000">导航</el-tag>
         <el-col :span="24">
           <el-menu router default-active="1" class="main">
             <el-menu-item index="/">
-              <el-icon><location /></el-icon><span>首页</span></el-menu-item
+              <el-icon><House /></el-icon><span>首页</span></el-menu-item
             >
 
             <el-menu-item index="Sample">
-              <el-icon><icon-menu /></el-icon>
+              <el-icon><files /></el-icon>
               <span>作品</span>
             </el-menu-item>
             <el-menu-item index="Box">
@@ -18,28 +18,28 @@
               <span>仓库</span>
             </el-menu-item>
             <el-menu-item index="Music">
-              <el-icon><setting /></el-icon>
+              <el-icon><cherry /></el-icon>
               <span>音乐</span>
             </el-menu-item>
             <el-menu-item index="File">
-              <el-icon><setting /></el-icon>
+              <el-icon><timer /></el-icon>
               <span>归档</span>
             </el-menu-item>
             <el-menu-item index="Message">
-              <el-icon><setting /></el-icon>
+              <el-icon><chat-dot-square /></el-icon>
               <span>留言</span>
             </el-menu-item>
             <el-menu-item index="Something">
-              <el-icon><setting /></el-icon>
+              <el-icon><message-box /></el-icon>
               <span>一些盒子</span>
             </el-menu-item>
           </el-menu>
         </el-col>
-        <el-tag type="info"> 组成</el-tag>
+        <el-tag type="info" color="#0000"> 组成</el-tag>
 
         <el-col :span="24">
           <el-menu
-            class="el-menu-demo"
+            class="main"
             @open="handleOpen"
             router
             @close="handleClose"
@@ -90,17 +90,23 @@
 <script>
 import { defineComponent } from "vue";
 import {
-  Location,
+  House,
+  Files,
   Document,
-  Menu as IconMenu,
-  Setting,
+  Cherry,
+  Timer,
+  ChatDotSquare,
+  MessageBox,
 } from "@element-plus/icons";
 export default defineComponent({
   components: {
-    Location,
+    House,
+    Files,
+    Cherry,
     Document,
-    Setting,
-    IconMenu,
+    Timer,
+    ChatDotSquare,
+    MessageBox,
   },
   setup() {
     const handleOpen = (key, keyPath) => {
@@ -123,16 +129,20 @@ export default defineComponent({
 // 组件信息
 </script>
 
-<style scope>
+<style lang="less" scoped>
 .aside {
   float: left;
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  padding-top: 50px;
+  margin-top: 50px;
   width: 217px;
   overflow: hidden;
+  background-color: #f9f9f9;
+  .main {
+    background-color: #f9f9f9;
+  }
 }
 .tac {
   flex-direction: column;

@@ -1,5 +1,13 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhazhayu
+ * @Date: 2022-01-03 14:32:47
+ * @LastEditors: zhazhayu
+ * @LastEditTime: 2022-01-25 23:13:09
+-->
 <template>
-  <div>
+  <div class="main">
     <el-timeline>
       <el-timeline-item
         v-for="(activity, index) in activities"
@@ -19,42 +27,35 @@
 
 <script>
 import { defineComponent } from "vue";
-import { MoreFilled } from "@element-plus/icons-vue";
 
 export default defineComponent({
   name: "File",
-  setup() {
+  mounted() {
+    this.$http({
+      method: "GET",
+      url: "/api/blog/list",
+    }).then((response) => {
+      this.getData = response.data.data;
+      for (let id = 0; id < this.getData.length; id++) {
+        this.activities[id].content = this.getData[id].title;
+        this.activities[id].timestamp = this.getData[id].createtime;
+        console.log(this.activities);
+      }
+    });
+  },
+  data() {
     return {
-      activities: [
-        {
-          content: "Custom icon",
-          timestamp: "2018-04-12 20:46",
-          size: "large",
-          type: "primary",
-          icon: MoreFilled,
-        },
-        {
-          content: "Custom color",
-          timestamp: "2018-04-03 20:46",
-          color: "#0bbd87",
-        },
-        {
-          content: "Custom size",
-          timestamp: "2018-04-03 20:46",
-          size: "large",
-        },
-        {
-          content: "Custom hollow",
-          timestamp: "2018-04-03 20:46",
-          type: "primary",
-          hollow: true,
-        },
-        {
-          content: "Default node",
-          timestamp: "2018-04-03 20:46",
-        },
-      ],
+      activities: {
+        content: String,
+        timestamp: Number,
+      },
+      getData: [],
     };
   },
 });
 </script>
+<style scoped>
+.main {
+  padding: 20px;
+}
+</style>

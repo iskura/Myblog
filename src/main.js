@@ -4,5 +4,6 @@ import router from './router'
 import store from './store'
 import Axios from './plugins/axios'
 
+
 const app=createApp(App)
-app.use(router).use(store).use(router).use(Axios).mount('#app')
+app.use(router).use(store).use(Axios).mount('#app')

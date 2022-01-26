@@ -1,11 +1,20 @@
+/*
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhazhayu
+ * @Date: 2022-01-06 15:49:21
+ * @LastEditors: zhazhayu
+ * @LastEditTime: 2022-01-18 20:06:49
+ */
 import axios from 'axios'
 
 axios.defaults.baseURL = '/api'
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
 const config = {
-   baseURL: "http://server.angoykeith.xyz",
+   baseURL: "https://server.angoykeith.xyz",
+  // baseURL: "http://localhost:8000",
    timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 }

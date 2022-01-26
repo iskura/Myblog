@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      name: "炸炸鱼 © 2021",
+      name: "炸炸鱼 © 2022",
       numble: "赣ICP备2021009143号",
     };
   },
@@ -37,7 +37,7 @@ export default {
     float: left;
     width: auto;
     margin-top: 15px;
-    margin-left: 16vw;
+    margin-left: 20%;
     color: rgb(0, 0, 0);
     .footer-a {
       text-decoration: none;

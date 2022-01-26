@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhazhayu
+ * @Date: 2022-01-03 14:32:47
+ * @LastEditors: zhazhayu
+ * @LastEditTime: 2022-01-25 23:07:00
+-->
 <template>
   <div class="main">
     <div class="blog">
@@ -9,8 +17,8 @@
 
 <script>
 // @ is an alias to /src
-import Navigation from "../components/Navigation.vue";
-import Passage from "../components/Passage.vue";
+import Navigation from "../components/layouts/Navigation.vue";
+import Passage from "../components/layouts/Passage.vue";
 export default {
   name: "Home",
   components: { Navigation, Passage },
@@ -24,6 +32,6 @@ export default {
 }
 .blog {
   float: right;
-  width: 75%;
+  width: auto;
 }
 </style>
