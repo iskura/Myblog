@@ -8,18 +8,31 @@
       /></a>
     </span>
     <!-- 搜索框 -->
-    <span class="main">
-      <el-input v-model="input" type="number" placeholder="搜索框" />
+    <div class="main">
+      <el-input v-model="input" placeholder="搜索框" />
+      <div class="search" v-show="input">
+        <ul>
+          <li v-for="item in searchdata" :key="item">
+            <a :href="'#/' + item.id"
+              >{{ item.title }}
+              <p>{{ item.content.substring(0, 12) + "..." }}</p></a
+            >
+          </li>
+          <li v-if="searchdata == undefind">
+            <a
+              >Error
+              <p>没有搜索到相关关键词</p></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
 
-      <el-button circle style="margin-left: 5px"
-        ><el-icon><Search /></el-icon> </el-button
-    ></span>
     <div class="other">
       <!-- 个人统计数据按钮 -->
       <el-button id="myself"
         ><el-icon><Edit /></el-icon
       ></el-button>
-      <!-- <_Search/> -->
       <!-- 待开发 音乐播放器 -->
       <!-- 闲言碎语 -->
       <el-button id="dropdown"
@@ -30,39 +43,40 @@
 </template>
 
 <script>
-// import _Search from "../page/_search.vue";
-import { Edit, Share, Search } from "@element-plus/icons";
+import { Edit, Share } from "@element-plus/icons";
 import { ref } from "vue";
 
 export default {
   name: "TopHeader",
-  components: { Edit, Share, Search },
+  components: { Edit, Share },
   data() {
     return {
       input: ref(""),
-      input1: "",
+      searchdata: [],
     };
   },
   watch: {
     input(newval, oldval) {
       this.$http({
         method: "GET",
-        url: "/api/blog/detail",
+        url: "/api/blog/list",
         params: {
-          id: newval,
+          search: newval,
         },
       }).then((response) => {
-        this.input1 = response.data.data.content;
-        console.log(oldval);
+        this.searchdata = response.data.data.content;
+        console.log(oldval, "searchdata", this.searchdata);
       });
     },
   },
 };
 </script>
-<style scoped>
+<style lang="less" scoped>
 /* 顶部导航栏 */
 .TopHeadder {
+  font-weight: 320;
   background-color: #f9f9f9;
+  z-index: 3;
   position: fixed;
   display: flex;
   top: 0;
@@ -75,26 +89,58 @@ export default {
   height: 50px;
   width: 217px;
   background: #f9f9f9;
+  img {
+    width: 50px;
+    height: 50px;
+  }
 }
 .log {
   height: 50px;
   margin: 0px 80px;
 }
 .main {
-  margin-left: 80px;
-  min-width: 400px;
-  padding: 5px;
   display: flex;
+  position: relative;
+  min-width: 300px;
+  padding: 5px;
+  margin: 0 auto;
 }
-#search-form {
-  margin-left: 3px;
-  margin-top: 0px;
+.search {
+  position: absolute;
+  width: 375px;
+  height: auto;
+  top: 48px;
+  ul {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px 1px;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 5px;
+    max-height: 500px;
+    padding: 4px 0;
+    li {
+      padding-left: 10px;
+      height: 60px;
+      list-style: none;
+      a {
+        text-decoration: none;
+        word-break: break-all;
+        color: #000000;
+        line-height: 1.42857143;
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+    li:hover {
+      background-color: #a09e9e;
+    }
+  }
 }
 .other {
   right: 0px;
   padding: 5px;
   min-width: 220px;
-  position: absolute;
+
   height: auto;
 }
 /* 数据统计按钮 */
@@ -116,10 +162,11 @@ export default {
     display: none;
   }
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 770px) {
   .main {
     display: none;
   }
+
   .zhazhayu {
     width: auto;
     margin: 0 auto;

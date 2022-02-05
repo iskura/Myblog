@@ -4,13 +4,11 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-03 14:32:47
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-25 23:07:00
+ * @LastEditTime: 2022-01-27 23:08:11
 -->
 <template>
   <div class="main">
-    <div class="blog">
-      <Passage />
-    </div>
+    <Passage />
     <Navigation />
   </div>
 </template>
@@ -29,9 +27,5 @@ export default {
   display: flex;
   width: auto;
   flex-wrap: nowrap;
-}
-.blog {
-  float: right;
-  width: auto;
 }
 </style>

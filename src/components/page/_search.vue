@@ -4,7 +4,7 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-25 21:47:14
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-25 23:07:07
+ * @LastEditTime: 2022-01-31 00:25:04
 -->
 <template>
   <div>
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import ArticleList from "../../components/ArticleList";
-import { dateFormat } from "../../utils/index";
+import ArticleList from "../tools/ArticleList.vue";
+import { dateFormat } from "../tools/index.js";
 
 dateFormat();
 export default {

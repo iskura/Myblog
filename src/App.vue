@@ -4,11 +4,11 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-03 14:32:47
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-26 23:24:16
+ * @LastEditTime: 2022-02-01 22:50:23
 -->
 <template>
-  <TopHeader style="z-index: 1" />
-  <AsideNavBar class="AsideNavBar" />
+  <TopHeader />
+  <AsideNavBar />
 
   <!-- 路由显示框 -->
   <router-view class="MainView" />
@@ -27,10 +27,13 @@ export default {
 * {
   padding: 0;
   margin: 0;
+  font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun,
+    Helvetica, Arial, Sans-serif, monospace;
 }
 .MainView {
   position: relative;
   margin-left: 217px;
+  font-weight: 350;
   margin-top: 50px;
   height: auto;
   width: auto;
@@ -42,20 +45,19 @@ export default {
   height: 50px;
   width: auto;
 }
-@media screen and (max-width: 855px) {
-  .AsideNavBar {
-    display: none;
-  }
+@media screen and (max-width: 770px) {
   .MainView {
-    height: auto;
-    width: auto;
     margin-left: 0px;
-
-    margin-top: 50px;
+    flex-direction: column;
   }
   .Footer {
     margin-top: 15px;
     margin-left: 0;
+  }
+}
+@media screen and (max-width: 1170px) {
+  .MainView {
+    flex-direction: column;
   }
 }
 </style>

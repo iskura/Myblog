@@ -1,60 +1,66 @@
 <template>
-  <!-- 页头 和 通知 -->
-  <div class="main">
-    <h2>炸炸鱼的博客</h2>
-    <h4>江枫渔火对愁眠</h4>
-  </div>
-  <!-- 头条 -->
-  <div class="top" v-if="pagecount == 1" v-bind="TipData">
-    <span class="title"
-      ><router-link :to="{ name: 'Id', params: { id: 1 } }">{{
-        TipData.title
-      }}</router-link></span
-    >
-    <div class="content">{{ TipData.content }}</div>
-  </div>
-  <!-- 文章页 -->
-  <div
-    v-for="item in getData.slice(
-      (pagecount - 1) * pagesize,
-      pagecount * pagesize
-    )"
-    :key="item.id"
-    class="box"
-  >
-    <img
-      style="width: 280px; height: 220px; flex-direction: column"
-      :src="item.url"
-    />
-
-    <div class="box1">
-      <span class="title"
-        ><router-link :to="{ name: 'Id', params: { id: item.id } }">{{
-          item.title
-        }}</router-link></span
+  <div>
+    <!-- 页头 和 通知 -->
+    <div class="main">
+      <h1>炸炸鱼的博客</h1>
+      <h4>月落乌啼霜满天，江枫渔火对愁眠。</h4>
+    </div>
+    <!-- 头条 -->
+    <div class="top" v-if="pagecount == 1" v-bind="TipData">
+      <a class="title" href="#/1">{{ TipData.title }}</a>
+      <div class="content">{{ TipData.content }}</div>
+    </div>
+    <!-- 文章页 -->
+    <div id="hv">
+      <div
+        v-for="item in getData.slice(
+          (pagecount - 1) * pagesize,
+          pagecount * pagesize
+        )"
+        :key="item.id"
+        class="box"
       >
-      <span class="content">{{ item.content.substring(0, 130) }}</span>
-      <el-divider style="top: 10px"></el-divider>
-      <div class="createauthor">
-        <el-icon size="12"><Avatar /></el-icon
-        ><span class="author">{{ item.author }}</span>
-        <el-icon size="12"><clock /></el-icon>
-        <span class="createtime">{{ timeFormater(item.createtime) }}</span>
+        <a :href="'#/' + item.id">
+          <div
+            class="img"
+            :style="{ backgroundImage: 'url(' + item.url + ')' }"
+          ></div>
+        </a>
+
+        <div class="box1">
+          <span class="title"
+            ><router-link :to="{ name: 'Id', params: { id: item.id } }">{{
+              item.title
+            }}</router-link></span
+          >
+          <span class="content">{{
+            item.content.substring(0, 130) + "..."
+          }}</span>
+          <el-divider style="top: 15px; margin-top: -10px"></el-divider>
+          <div class="createauthor">
+            <el-icon size="12"><Avatar /></el-icon
+            ><span class="author">{{ item.author }}</span>
+            <el-icon size="12"><clock /></el-icon>
+            <span class="createtime">{{ timeFormater(item.createtime) }}</span>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- 分页 -->
+    <nav class="pagecut">
+      <el-pagination
+        :page-size="pagesize"
+        :page-count="Math.floor(getData.length / pagesize) + 1"
+        layout="prev, pager, next,jumper"
+        @current-change="handleCurrentChange"
+      >
+      </el-pagination>
+    </nav>
+
+    <!-- 回到顶部按钮 -->
+    <el-backtop />
   </div>
-  <!-- 分页 -->
-  <el-pagination
-    background
-    :page-size="pagesize"
-    :pager-count="pagecount"
-    layout="prev, pager, next"
-    :total="getData.length"
-    @current-change="handleCurrentChange"
-  >
-  </el-pagination>
-  <!-- 回到顶部按钮 -->
-  <el-backtop />
 </template>
 
 <script>
@@ -73,7 +79,6 @@ export default defineComponent({
   // },
   data() {
     return {
-      loading: true,
       pagesize: 8,
       pagecount: 1,
       TipData: [],
@@ -98,7 +103,7 @@ export default defineComponent({
     }).then((response) => {
       this.getData = response.data.data;
     });
-    //zhiding
+
     this.$http({
       method: "GET",
       url: "/api/blog/detail",
@@ -116,10 +121,10 @@ export default defineComponent({
 .main {
   margin: 0;
   width: 100%;
-  height: 110px;
+  height: 100px;
   background-color: #f9f9f9;
-  h2 {
-    font-weight: 350;
+  h1 {
+    font-weight: 300;
     line-height: 42px;
     padding-top: 18px;
     text-align: center;
@@ -133,7 +138,7 @@ export default defineComponent({
   }
 }
 a {
-  color: inherit;
+  color: #000000;
   display: inline-flex;
   text-decoration: none;
   word-break: break-all;
@@ -146,13 +151,22 @@ a {
   height: 200px;
   border-radius: 4px;
   overflow: hidden;
+  transition: 0.5s;
+  .img {
+    max-width: 220px;
+    width: 30vw;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
   .box1 {
     font-weight: 300;
     width: auto;
     display: flex;
     flex-direction: column;
-    margin: 15px;
-    margin-left: 22px;
+    margin: 13px;
+    margin-left: 20px;
   }
   .title {
     width: 100%;
@@ -161,11 +175,15 @@ a {
     font-weight: 500;
   }
   .content {
+    color: #8f8f8f;
     margin-top: 8px;
-    height: 130px;
+    height: 70%;
+    overflow: hidden;
   }
   .createauthor {
+    color: #8f8f8f;
     font-size: 13px;
+    bottom: 0px;
     .createtime {
       margin: 10px;
     }
@@ -173,6 +191,10 @@ a {
       margin: 10px;
     }
   }
+}
+.box:hover {
+  box-shadow: 0px 0px 10px #ccc;
+  transform: scale(1.002) translateX(3px) translateY(-3px);
 }
 .top {
   height: 200px;
@@ -188,7 +210,7 @@ a {
   .title {
     font-size: 22px;
     line-height: 24.2px;
-    margin-top: 100px;
+    margin-top: 70px;
     display: block;
     text-align: center;
   }
@@ -199,10 +221,36 @@ a {
     margin-top: 8px;
   }
 }
-
+.pagecut {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  justify-content: center;
+}
 @media screen and (max-width: 680px) {
-  img {
-    display: none;
+  .img {
+    width: 30%;
+
+    flex-direction: column;
+    background-position: center;
+  }
+  .top {
+    height: 170px;
+  }
+  .box {
+    height: 145px;
+    .box1 {
+      margin: 8px;
+      margin-left: 13px;
+    }
+    .title {
+      font-size: 14px;
+    }
+    .content {
+      font-size: 13px;
+      height: 72%;
+    }
   }
 }
 </style>

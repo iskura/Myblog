@@ -4,7 +4,7 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-03 14:32:47
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-25 22:49:10
+ * @LastEditTime: 2022-01-27 23:15:30
  */
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
@@ -27,9 +27,9 @@ const routes = [
     component: () => import("../views/Music.vue"),
   },
   {
-    path: "/File",
-    name: "File",
-    component: () => import("../views/File.vue"),
+    path: "/Block",
+    name: "Block",
+    component: () => import("../views/Block.vue"),
   },
   {
     path: "/Message",

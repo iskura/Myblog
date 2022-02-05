@@ -12,14 +12,13 @@
       <div class="length" v-if="this.length">
         <el-icon size="12"><notebook /></el-icon>{{ length }}字数
       </div>
-      <span :id="'/' + this.path" class="leancloud_visitors">
-        <em class="seenumber">阅读量</em>
-        <i class="leancloud-visitors-count"></i>
+      <span :id="'/' + this.$route.params.id" class="leancloud_visitors">
+        <i class="seenumber"><i class="leancloud-visitors-count"></i>次阅读</i>
       </span>
     </div>
     <!-- 首页正文页头 -->
 
-    <el-page-header :icon="ArrowLeft" content="detail" />
+    <!-- this.$router.go(-1) -->
     <!-- 正文 -->
     <div class="main">
       <el-alert
@@ -47,7 +46,6 @@
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import Comment from "../tools/comment.vue";
-// import Valine from "valine";
 import { Avatar, Clock, Notebook } from "@element-plus/icons";
 import dayjs from "dayjs";
 export default {
@@ -63,28 +61,11 @@ export default {
       let time = new dayjs(value).format("YYYY-MM-DD:HH:mm:ss");
       return time;
     },
-    // createValine() {
-    //   let path = this.$route.params.id;
-    //   console.log("path", path);
-    //   new Valine({
-    //     el: "#vcomments",
-    //     appId: "UCfTwCsTUwcXbbnnvxxlhP14-gzGzoHsz",
-    //     appKey: "519A2JkOR4002zpi0XlpfBPD",
-    //     visitor: true,
-    //     avatar: "monsterid",
-    //     path: "/" + this.path,
-    //     placeholder: "欢迎留言与我分享您的想法...",
-    //   });
-    //   this.valineRefresh = true;
-    // },
   },
   watch: {
     $route(to, from) {
       if (to.path !== from.path) {
-        setTimeout(() => {
-          //重新刷新valine
-          // this.createValine();
-        }, 300);
+        setTimeout(() => {}, 300);
       }
     },
   },
@@ -100,7 +81,6 @@ export default {
       this.getData = response.data.data;
       this.length = this.getData.content.length;
     });
-    // this.createValine();
   },
 };
 </script>
@@ -134,17 +114,17 @@ export default {
   display: flex;
 }
 .alert {
+  width: 100%;
+  text-align: left;
+  margin-top: 10px;
   font-size: 30px;
 }
 .content {
-  background-color: #f4f4f5;
+  background-color: #f4f4f5 #ffff;
   flex-direction: column;
   text-align: left;
   margin-top: 10px;
   padding: 5px;
   border-radius: 5px;
-}
-#vcomments {
-  margin-top: 10px;
 }
 </style>

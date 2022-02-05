@@ -4,7 +4,7 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-26 23:50:07
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-27 01:18:06
+ * @LastEditTime: 2022-01-27 22:43:53
 -->
 <template>
   <div id="vcomments"></div>
@@ -24,8 +24,6 @@ export default {
   methods: {
     createValine() {
       let path = this.postid;
-      console.log("plun", this.props);
-
       new Valine({
         el: "#vcomments",
         appId: "UCfTwCsTUwcXbbnnvxxlhP14-gzGzoHsz",
@@ -35,7 +33,6 @@ export default {
         path: "/" + path,
         placeholder: "欢迎留言与我分享您的想法...",
       });
-      console.log("plun", path);
       this.valineRefresh = true;
     },
   },

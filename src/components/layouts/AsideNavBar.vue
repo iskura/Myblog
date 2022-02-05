@@ -1,5 +1,8 @@
 <template>
-  <div class="aside">
+  <button class="menu" @click="showMenu()">
+    <more style="width: 22px; height: 22px" />
+  </button>
+  <div class="aside" id="aside">
     <el-scrollbar style="heigth: 100%">
       <el-row class="tac">
         <el-tag type="info" color="#0000">导航</el-tag>
@@ -21,7 +24,7 @@
               <el-icon><cherry /></el-icon>
               <span>音乐</span>
             </el-menu-item>
-            <el-menu-item index="File">
+            <el-menu-item index="Block">
               <el-icon><timer /></el-icon>
               <span>归档</span>
             </el-menu-item>
@@ -95,6 +98,7 @@ import {
   Document,
   Cherry,
   Timer,
+  More,
   ChatDotSquare,
   MessageBox,
 } from "@element-plus/icons";
@@ -107,7 +111,9 @@ export default defineComponent({
     Timer,
     ChatDotSquare,
     MessageBox,
+    More,
   },
+
   setup() {
     const handleOpen = (key, keyPath) => {
       console.log(key, keyPath);
@@ -122,15 +128,38 @@ export default defineComponent({
   },
   data() {
     return {
+      menu: false,
       name: "Something",
     };
+  },
+  methods: {
+    showMenu() {
+      const bar = document.getElementById("aside");
+      if (this.menu) {
+        bar.style.display = "none";
+      } else {
+        bar.style.display = "block";
+      }
+      this.menu = !this.menu;
+    },
   },
 });
 // 组件信息
 </script>
 
 <style lang="less" scoped>
+.menu {
+  z-index: 3;
+  position: fixed;
+  top: 15px;
+  left: 28px;
+  cursor: pointer;
+  display: none;
+  border: none;
+  background-color: #f9f9f9;
+}
 .aside {
+  z-index: 3;
   float: left;
   position: fixed;
   left: 0;
@@ -146,5 +175,13 @@ export default defineComponent({
 }
 .tac {
   flex-direction: column;
+}
+@media screen and (max-width: 770px) {
+  .aside {
+    display: none;
+  }
+  .menu {
+    display: block;
+  }
 }
 </style>

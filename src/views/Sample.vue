@@ -4,7 +4,7 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-03 14:32:47
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-26 23:46:33
+ * @LastEditTime: 2022-01-27 23:55:40
 -->
 <template>
   <div>
@@ -112,7 +112,8 @@ export default {
     .card {
       margin-top: 20px;
       text-align: center;
-      background-color: #f5fafc;
+      background: #fcfcfc;
+
       .starinfo {
         font-size: 15px;
         padding-top: 7px;
@@ -140,7 +141,7 @@ export default {
     }
   }
 }
-
+// basecode图片
 .img {
   width: auto;
   height: 280px;
