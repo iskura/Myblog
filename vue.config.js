@@ -4,7 +4,7 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-03 14:29:58
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-02-01 17:00:10
+ * @LastEditTime: 2022-02-06 14:16:38
  */
 const AutoImport = require("unplugin-auto-import/webpack");
 const Components = require("unplugin-vue-components/webpack");
@@ -21,6 +21,8 @@ module.exports = {
     ],
   },
 
+  // lintOnSave: false,
+  // productiontip: false,
   devServer: {
     host: "127.0.0.1",
     port: 8080,
@@ -38,5 +40,5 @@ module.exports = {
     },
   },
 
-  productionSourceMap: false
+  productionSourceMap: false,
 };

@@ -2,11 +2,7 @@
   <div>
     <div class="container">
       <div class="handle-box">
-        <el-select
-          v-model="query.address"
-          placeholder="地址"
-          class="handle-select mr10"
-        >
+        <el-select v-model="query.address" placeholder="地址">
           <el-option key="1" label="前端" value=""></el-option>
           <el-option key="2" label="闲谈"></el-option>
           <el-option key="3" label="笔记"></el-option>
@@ -39,7 +35,7 @@
         <el-table-column
           prop="title"
           label="标题"
-          width="190"
+          width="100"
         ></el-table-column>
         <el-table-column label="文章封面" align="center" width="100">
           <template #default="scope">

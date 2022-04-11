@@ -64,8 +64,8 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.path !== from.path) {
-        setTimeout(() => {}, 300);
+      if (to.path !== from.path || this.$route.params.id) {
+        setTimeout(() => {}, 100);
       }
     },
   },
@@ -77,7 +77,6 @@ export default {
         id: this.$route.params.id,
       },
     }).then((response) => {
-      console.log(response.data.data);
       this.getData = response.data.data;
       this.length = this.getData.content.length;
     });

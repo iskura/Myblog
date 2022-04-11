@@ -4,7 +4,7 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-26 23:50:07
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-27 22:43:53
+ * @LastEditTime: 2022-02-07 01:09:45
 -->
 <template>
   <div id="vcomments"></div>
@@ -40,7 +40,6 @@ export default {
     $route(to, from) {
       if (to.path !== from.path) {
         setTimeout(() => {
-          console.log("watch刷新了评论");
           this.createValine();
         }, 300);
       }

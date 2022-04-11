@@ -4,18 +4,17 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-03 14:32:47
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-27 23:08:11
+ * @LastEditTime: 2022-02-14 19:39:42
 -->
 <template>
   <div class="main">
-    <Passage />
+    <Passage :type="this.$route.params.type" />
     <Navigation />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Navigation from "../components/layouts/Navigation.vue";
+import Navigation from "../components/page/Navigation.vue";
 import Passage from "../components/layouts/Passage.vue";
 export default {
   name: "Home",

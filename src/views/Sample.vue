@@ -4,7 +4,7 @@
  * @Autor: zhazhayu
  * @Date: 2022-01-03 14:32:47
  * @LastEditors: zhazhayu
- * @LastEditTime: 2022-01-27 23:55:40
+ * @LastEditTime: 2022-02-06 23:49:32
 -->
 <template>
   <div>
@@ -146,9 +146,7 @@ export default {
   width: auto;
   height: 280px;
   background-image: url("https://upyun.mcloc.cn/usr/uploads/2020/09/2017671113.jpg");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+
   overflow: hidden;
-  background-size: cover;
 }
 </style>

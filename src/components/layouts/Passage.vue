@@ -3,7 +3,8 @@
     <!-- 页头 和 通知 -->
     <div class="main">
       <h1>炸炸鱼的博客</h1>
-      <h4>月落乌啼霜满天，江枫渔火对愁眠。</h4>
+      <h4 v-show="!type">月落乌啼霜满天，江枫渔火对愁眠。</h4>
+      <h4 v-show="type">分类{{ pagename[type - 1] }}下的文章</h4>
     </div>
     <!-- 头条 -->
     <div class="top" v-if="pagecount == 1" v-bind="TipData">
@@ -33,14 +34,12 @@
               item.title
             }}</router-link></span
           >
-          <span class="content">{{
-            item.content.substring(0, 130) + "..."
-          }}</span>
+          <div class="content">{{ item.content }}</div>
           <el-divider style="top: 15px; margin-top: -10px"></el-divider>
           <div class="createauthor">
-            <el-icon size="12"><Avatar /></el-icon
+            <el-icon><Avatar /></el-icon
             ><span class="author">{{ item.author }}</span>
-            <el-icon size="12"><clock /></el-icon>
+            <el-icon><clock /></el-icon>
             <span class="createtime">{{ timeFormater(item.createtime) }}</span>
           </div>
         </div>
@@ -66,24 +65,31 @@
 <script>
 import { defineComponent } from "vue";
 import { Avatar, Clock } from "@element-plus/icons";
-
 import dayjs from "dayjs";
 
 export default defineComponent({
   components: { Avatar, Clock },
-  // props: {
-  //   articleList: {
-  //     type: Array,
-  //     default: () => [],
-  //   },
-  // },
+  props: {
+    type: {
+      //文章分类
+      type: Number,
+      default: 1,
+    },
+  },
   data() {
     return {
+      pagename: ["闲谈", "笔记", "设计", "一周记录", "技术", "生活", "技术"],
       pagesize: 8,
       pagecount: 1,
       TipData: [],
       getData: [],
     };
+  },
+  watch: {
+    pagetype(to, from) {
+      console.log(to, from);
+      console.log(this.pagetype);
+    },
   },
   methods: {
     handleCurrentChange(val) {
@@ -100,10 +106,12 @@ export default defineComponent({
     this.$http({
       method: "GET",
       url: "/api/blog/list",
+      params: {
+        type: this.type,
+      },
     }).then((response) => {
       this.getData = response.data.data;
     });
-
     this.$http({
       method: "GET",
       url: "/api/blog/detail",
@@ -124,7 +132,6 @@ export default defineComponent({
   height: 100px;
   background-color: #f9f9f9;
   h1 {
-    font-weight: 300;
     line-height: 42px;
     padding-top: 18px;
     text-align: center;
@@ -133,15 +140,12 @@ export default defineComponent({
     margin-top: 8px;
     text-align: center;
     font-size: 14px;
-    font-weight: 300;
     color: #a0a0a0;
   }
 }
 a {
-  color: #000000;
   display: inline-flex;
-  text-decoration: none;
-  word-break: break-all;
+  font-weight: 500 !important;
 }
 .box {
   background-color: #ffffff;
@@ -152,13 +156,11 @@ a {
   border-radius: 4px;
   overflow: hidden;
   transition: 0.5s;
+
   .img {
     max-width: 220px;
     width: 30vw;
     height: auto;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
   }
   .box1 {
     font-weight: 300;
@@ -172,13 +174,17 @@ a {
     width: 100%;
     display: block;
     font-size: 19px;
-    font-weight: 500;
   }
   .content {
     color: #8f8f8f;
     margin-top: 8px;
     height: 70%;
+    display: -webkit-box !important;
     overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
   }
   .createauthor {
     color: #8f8f8f;
@@ -199,9 +205,7 @@ a {
 .top {
   height: 200px;
   background-image: url("https://upyun.mcloc.cn/usr/uploads/2021/08/1958042363.jpg");
-  background-repeat: no-repeat;
-  background-position: 50% 65%;
-  background-size: cover;
+
   margin: 16px;
   height: 230px;
   border-radius: 4px;
@@ -231,9 +235,7 @@ a {
 @media screen and (max-width: 680px) {
   .img {
     width: 30%;
-
     flex-direction: column;
-    background-position: center;
   }
   .top {
     height: 170px;
@@ -243,9 +245,9 @@ a {
     .box1 {
       margin: 8px;
       margin-left: 13px;
-    }
-    .title {
-      font-size: 14px;
+      a {
+        font-size: 14px !important;
+      }
     }
     .content {
       font-size: 13px;

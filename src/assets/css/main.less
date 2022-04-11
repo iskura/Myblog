@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-weight: 330;
+    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun,
+      Helvetica, Arial, Sans-serif, monospace;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  a {
+    text-decoration: none;
+    word-break: break-all;
+    color: #000000;
+    line-height: 1.42857143;
+    font-size: 15px;
+  }
+  .MainView {
+    position: relative;
+    margin-left: 217px;
+    margin-top: 50px;
+    height: auto;
+    width: auto;
+    background-color: #f1f3f4;
+    a {
+      font-size: 20px;
+    }
+  }
+  .Footer {
+    margin-left: 217px;
+    left: 217px;
+    height: 50px;
+    width: auto;
+  }
+  @media screen and (max-width: 770px) {
+    .MainView {
+      margin-left: 0px;
+      flex-direction: column;
+    }
+    .Footer {
+      margin-top: 15px;
+      margin-left: 0;
+    }
+  }
+  @media screen and (max-width: 1170px) {
+    .MainView {
+      flex-direction: column;
+    }
+  }
