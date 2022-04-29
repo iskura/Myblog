@@ -2,21 +2,22 @@
   <div>
     <div class="container">
       <div class="handle-box">
-        <el-select v-model="query.address" placeholder="地址">
-          <el-option key="1" label="前端" value=""></el-option>
-          <el-option key="2" label="闲谈"></el-option>
-          <el-option key="3" label="笔记"></el-option>
-          <el-option key="4" label="技术"></el-option>
-          <el-option key="5" label="生活"></el-option>
-          <el-option key="6" label="设计"></el-option>
+        <el-select v-model="address" placeholder="地址">
+          <el-option key="1" label="前端" value="前端"></el-option>
+          <el-option key="2" label="闲谈" value="前端"></el-option>
+          <el-option key="3" label="笔记" value="前端"></el-option>
+          <el-option key="4" label="技术" value="前端"></el-option>
+          <el-option key="5" label="生活" value="前端"></el-option>
+          <el-option key="6" label="设计" value="前端"></el-option>
         </el-select>
         <el-input
-          v-model="query.name"
+          v-model="name"
           placeholder="用户名"
           class="handle-input mr10"
         ></el-input>
+        {{ name }}
         <el-button type="primary" icon="el-icon-search" @click="handleSearch"
-          >搜索</el-button
+          >搜索{{ name }}</el-button
         >
       </div>
       <el-table
@@ -162,6 +163,8 @@ export default {
     return {
       pageIndex: 1,
       pageSize: 10,
+      name: "111",
+      type: "111",
     };
   },
   mounted() {
